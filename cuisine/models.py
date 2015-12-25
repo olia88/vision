@@ -1,13 +1,32 @@
+#-*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
+from country.models import Country
 
 # Create your models here.
-class Country(models.Model):
+
+class Cuisine(models.Model):
+
+	meal_type = (
+		('first meal', 'Первое блюдо'),
+		('meat', 'Блюдо из мяса'),
+		('fish', 'Блюдо из рыбы'),
+		('baked dishes', 'Запеченные блюда'),
+		('baking', 'Выпечка'),
+		('Dessert', 'Десерты'),
+		('Other', 'Другое'),
+	)
+
 	title = models.CharField(max_length = 250)
-	category = models.CharField(max_length = 150, choices = food)
+	category = models.CharField(max_length = 155, choices = meal_type)
 	ingredients = models.TextField()
-	main_pic = models.FileField()
+	steps = models.TextField()
+	main_pic = models.FileField(upload_to = 'cuisine')
+	author = models.ForeignKey(User)
+	country = models.ForeignKey(Country)
+	date_published = models.DateField(auto_now_add = True)
 
 	def __unicode__(self):
-		return self.name
+		return self.title
