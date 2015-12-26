@@ -13,6 +13,9 @@ class Country(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta():
+		verbose_name_plural = 'Countries'
+
 class City(models.Model):
 	name = models.CharField(max_length = 150)
 	description = models.TextField()
@@ -20,3 +23,6 @@ class City(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	class Meta():
+		verbose_name_plural = 'Cities'
