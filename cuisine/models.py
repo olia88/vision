@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from country.models import Country
+from cities.models import Country
+#from country.models import Country, City
 
 # Create your models here.
 
@@ -11,6 +12,7 @@ class Cuisine(models.Model):
 
 	meal_type = (
 		('first meal', 'Первое блюдо'),
+		('second meal', 'Второе блюдо'),
 		('meat', 'Блюдо из мяса'),
 		('fish', 'Блюдо из рыбы'),
 		('baked dishes', 'Запеченные блюда'),

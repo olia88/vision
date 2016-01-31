@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'blog',
     'cuisine',
-    'country',
+    #'country',
+    'relaxation',
+    'cities',
+    #'price',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,10 +82,22 @@ WSGI_APPLICATION = 'vision.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #    'NAME': 'vision',
+    #    'USER': 'root',
+    #    'PASSWORD': '8018825',
+    #    'HOST': '127.0.0.1', 
+        #'PORT':''
+    #}
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'travel',
+        'ENGINE': 'django.contrib.gis.db.backends.mysql',
+        'USER': 'root',
+        'PASSWORD': '8018825'
     }
+    
 }
 
 
@@ -128,3 +144,17 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 MEDIA_URL = '/media/'
+
+
+CITIES_FILES = {
+    'city': {
+       'filename': 'cities1000.zip',
+       'urls':     ['http://download.geonames.org/export/dump/'+'{filename}']
+    },
+}
+GEOIP_PATH = os.path.join(MEDIA_ROOT, 'geoip')
+GEOIP_COUNTRY = 'GeoIP.dat'
+GEOIP_CITY = 'GeoLiteCity.dat'
+CITIES_IGNORE_EMPTY_REGIONS = True
+CITIES_LOCALES = ['en', 'und']  # + ['LANGUAGES']
+GEOS_LIBRARY_PATH = '/home/olia/projects/vision/vision/geos-3.3.8/capi/.libs/libgeos_c.so'
